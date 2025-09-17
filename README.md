@@ -1,1 +1,2 @@
 - Version v1.0.0 released
+- Version v1.0.1-vsix released
