@@ -1,3 +1,4 @@
 - Version v1.0.0 released
 - Version v1.0.1-vsix released
 - Releasing extension version vsix-v1.0.2
+- Releasing version 1.0.2
