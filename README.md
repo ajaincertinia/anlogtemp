@@ -5,3 +5,4 @@
 - Releasing extension version vsix-v1.0.3
 - Releasing extension version vsix-v1.0.4
 - Releasing version 1.0.3
+- Releasing version 1.0.4
