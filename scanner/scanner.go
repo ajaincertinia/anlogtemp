@@ -3,6 +3,7 @@ import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
 	"os"
+	 "runtime/debug"
 )
 
 type Options struct {
@@ -31,7 +32,16 @@ func DisplayVersion(version string) {
 	if !IsVersion() {
 		return
 	}
-	fmt.Printf("%s\n", version)
+	buildInfo, ok := debug.ReadBuildInfo()
+	if !ok {
+		fmt.Println("Unable to determine version information.")
+		return
+	}
+	if buildInfo.Main.Version != "" {
+		fmt.Printf("Version: %s\n", buildInfo.Main.Version)
+	} else {
+		fmt.Println("Version: unknown")
+	}
 	os.Exit(0)
 }
 
