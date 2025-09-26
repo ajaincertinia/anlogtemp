@@ -1,23 +1,25 @@
 package scanner
+
 import (
 	"fmt"
-	"github.com/jessevdk/go-flags"
 	"os"
-	 "runtime/debug"
+	"runtime/debug"
+
+	"github.com/jessevdk/go-flags"
 )
 
 type Options struct {
-	Version      bool   `short:"V" long:"version" required:"false" description:"Display the current version of binary"`
+	Version bool `short:"V" long:"version" required:"false" description:"Display the current version of binary"`
 }
 
 var opts Options
 
-var Version = "1.0.4"
+var Version = ""
 
 func LoadResources() {
 	opts := InitializeOptions()
 	DisplayVersion(Version)
-	fmt.Println( "Options: ", opts)
+	fmt.Println("Options: ", opts)
 }
 
 func InitializeOptions() *Options {
@@ -32,15 +34,18 @@ func DisplayVersion(version string) {
 	if !IsVersion() {
 		return
 	}
-	buildInfo, ok := debug.ReadBuildInfo()
-	if !ok {
-		fmt.Println("Unable to determine version information.")
-		return
-	}
-	if buildInfo.Main.Version != "" {
-		fmt.Printf("Version: %s\n", buildInfo.Main.Version)
+	if version != "" {
+		fmt.Printf("%s\n", version)
 	} else {
-		fmt.Println("Version: unknown")
+		buildInfo, ok := debug.ReadBuildInfo()
+		if !ok {
+			fmt.Println("Version information not available.")
+		}
+		if buildInfo.Main.Version != "" {
+			fmt.Printf("%s\n", buildInfo.Main.Version)
+		} else {
+			fmt.Println("unknown")
+		}
 	}
 	os.Exit(0)
 }

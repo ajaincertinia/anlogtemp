@@ -7,3 +7,4 @@
 - Releasing version 1.0.3
 - Releasing version 1.0.4
 - Releasing version 1.0.5
+- Releasing version 1.0.6
